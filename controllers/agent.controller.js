@@ -30,7 +30,7 @@ async function reportarUso(req, res) {
         dispositivo_id: dispositivo.id,
         horas_uso,
         fuente: 'agente',
-        fecha: fecha || new Date().toISOString(),
+        fecha_uso: fecha || new Date().toISOString(),
       })
       .select('id')
       .single();
