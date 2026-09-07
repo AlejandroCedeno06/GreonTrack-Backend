@@ -14,7 +14,7 @@ Agente GreonTrack.
 
 - Node.js (CommonJS)
 - Express
-- Supabase (Auth + Postgres)
+- Supabase (Postgres)
 
 ## Setup
 
@@ -31,9 +31,13 @@ npm start
 - DATA_MODE — 'mock' o 'supabase'. En 'mock' los datos se guardan en
   memoria (útil para probar sin base de datos real); en 'supabase' se
   usa la base de datos real.
-- SUPABASE_URL, SUPABASE_ANON_KEY — usadas por el módulo de autenticación.
-- SUPABASE_SERVICE_ROLE_KEY — usada por el endpoint del Agente para
-  escribir directo en la base de datos sin pasar por sesión de usuario.
+- SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY — usadas por el endpoint del
+  Agente para verificar el device_token y escribir directo en la base
+  de datos sin pasar por sesión de usuario.
+- SUPABASE_ANON_KEY — no la usa el código actual (el login/registro se
+  maneja directo desde el Frontend contra Supabase, no desde este
+  Backend); queda declarada por si el Backend gana su propio flujo de
+  autenticación más adelante.
 
 ## Endpoints
 
@@ -43,12 +47,6 @@ npm start
   x-device-token, que identifica a qué dispositivo pertenece el reporte.
 - GET /agent/debug/registros — solo funciona en modo mock, sirve para
   ver en el navegador los datos que el agente ha ido mandando.
-
-### Auth
-- POST /auth/registro
-- POST /auth/login
-- POST /auth/logout
-- GET /auth/me
 
 ## Notas
 
